@@ -20,6 +20,26 @@ This repository contains two JavaScript files designed to be implemented through
      - `user_journey=example.com | test_source | test_campaign ->`
      - `visit_path={"Visit 1":{"1":"/","2":"/#go","3":"/#buy","4":"/#charts_secton"}}`
 
+   - **Example `Visit` Data**:
+     ```json
+     {
+       "Visit 1": {
+         "1": "/",
+         "2": "/#go",
+         "3": "/#buy",
+         "4": "/#charts_secton"
+       },
+       "Visit 2": {
+         "1": "/",
+         "2": "/catalog",
+         "3": "/checkout",
+         "4": "/thank-you"
+       }
+     }
+     ```
+     Each visit is tracked separately, and the pages within a visit are indexed sequentially.
+ 
+
 2. **`addHiddenfieldsToForm.js`**
    - **Purpose**:
      - Read cookies set by `saveUTMandPathToCookies.js`.
@@ -96,6 +116,18 @@ https://example.com/?utm_source=test_source&utm_campaign=test_campaign
 ### Notes
 Ensure both scripts are tested thoroughly in the GTM preview mode before publishing.
 For debugging, enable console logs in the browser to verify the cookies and added fields.
+
+
+### Usage Limits and Considerations
+#### Cookies Size Limit:
+Most browsers limit cookie size to 4KB. Large visit_path_json objects may exceed this limit.
+To avoid issues, ensure that visit_path_json is kept concise by trimming old data or summarizing it.
+
+#### Performance Impact:
+Adding hidden fields dynamically to large numbers of forms may slightly impact page rendering performance on slower devices.
+
+#### Cross-Browser Compatibility:
+Test thoroughly in all target browsers to ensure cookies and hidden fields work as expected.
 
 ## License
 This project is licensed under the MIT License. Feel free to use and modify it as needed.
