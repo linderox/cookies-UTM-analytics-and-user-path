@@ -63,3 +63,42 @@ This repository contains two JavaScript files designed to be implemented through
 ## Example Cookie Data
 
 ### After visiting the URL:
+https://example.com/?utm_source=test_source&utm_campaign=test_campaign
+
+### Cookies Stored:
+- `utm_source=test_source`
+- `utm_campaign=test_campaign`
+- `user_journey=example.com | test_source | test_campaign ->`
+- `visit_path={"Visit 1":{"1":"/","2":"/#go","3":"/#buy","4":"/#charts_secton"}}`
+
+---
+
+## Example Hidden Fields Added to a Form
+
+### Original Form:
+```html
+<form action="/submit" method="post">
+    <input type="text" name="email" placeholder="Enter your email">
+    <button type="submit">Submit</button>
+</form>
+Modified Form:
+html
+Copy
+Edit
+<form action="/submit" method="post">
+    <input type="text" name="email" placeholder="Enter your email">
+    <input type="hidden" name="utm_source" value="test_source">
+    <input type="hidden" name="utm_campaign" value="test_campaign">
+    <input type="hidden" name="user_journey" value="example.com | test_source | test_campaign ->">
+    <input type="hidden" name="visit_path_json" value='{"Visit 1":{"1":"/","2":"/#go","3":"/#buy","4":"/#charts_secton"}}'>
+    <button type="submit">Submit</button>
+</form>
+Notes
+Ensure both scripts are tested thoroughly in the GTM preview mode before publishing.
+For debugging, enable console logs in the browser to verify the cookies and added fields.
+License
+This project is licensed under the MIT License. Feel free to use and modify it as needed.
+
+```
+
+This `README.md` provides all necessary details for understanding, implementing, and debugging the scripts in GTM.
